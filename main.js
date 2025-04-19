@@ -6,6 +6,7 @@ const profileContainer = document.getElementById("profile-container");
 const profileImage = document.getElementById("profile-image");
 const profileName = document.getElementById("profile-name");
 const profileBio = document.getElementById("profile-bio");
+const profileLink = document.getElementById("profile-link"); // Novo elemento
 
 async function searchUser() {
   const username = searchInput.value.trim();
@@ -36,6 +37,10 @@ async function searchUser() {
     profileImage.src = data.avatar_url;
     profileName.textContent = data.name || "Usuário sem nome";
     profileBio.textContent = data.bio || "Sem bio disponível";
+
+    profileLink.href = data.html_url;
+    profileLink.textContent = "Ver perfil no GitHub";
+
     profileContainer.classList.remove("hidden");
   } catch (err) {
     error.textContent = err.message || "Erro ao buscar o perfil.";
