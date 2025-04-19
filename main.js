@@ -1,4 +1,3 @@
-// main.js (ou script.js, mas com type="module")
 const searchButton = document.getElementById("search-button");
 const searchInput = document.getElementById("search-input");
 const loading = document.getElementById("loading");
