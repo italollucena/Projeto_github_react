@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="style.css" />
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-      /* Garante que nada ultrapasse a largura da tela */
       * {
         box-sizing: border-box;
       }
@@ -27,14 +26,16 @@
   >
     <!-- Efeito de bolinhas -->
     <div
-      class="absolute inset-0 w-full h-full opacity-5 z-0 pointer-events-none"
+      class="absolute opacity-5 z-0 pointer-events-none h-full w-full lg:w-64 lg:-left-12 lg:-top-12"
       style="
         background-image: url('data:image/svg+xml,%3Csvg width=\'15\' height=\'16\' viewBox=\'0 0 8 8\' fill=\'none\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Ccircle cx=\'4\' cy=\'4\' r=\'2\' fill=\'white\'/%3E%3C/svg%3E');
         background-repeat: repeat;
+        left: 0;
+        top: 0;
       "
     ></div>
 
-    <!-- Nuvens decorativas com responsividade -->
+    <!-- Nuvens decorativas -->
     <div
       class="absolute bg-blue-600 opacity-70 rounded-full blur-[90px] z-0 pointer-events-none"
       style="width: 300px; height: 300px; top: -80px; right: -80px;"
