@@ -6,10 +6,9 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
     />
-
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <title>Perfil GitHub</title>
-    <style src="style.css"></style>
+    <link rel="stylesheet" href="style.css" />
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
   <body
@@ -20,12 +19,13 @@
     "
   >
     <!-- Efeito de bolinhas -->
-    <div class="absolute -top-12 -left-12 w-64 h-full opacity-5 z-0"
-    style="
-      background-image: url('data:image/svg+xml,%3Csvg width=\'15\' height=\'16\' viewBox=\'0 0 8 8\' fill=\'none\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Ccircle cx=\'4\' cy=\'4\' r=\'2\' fill=\'white\'/%3E%3C/svg%3E');
-      background-repeat: repeat;
-    ">
-</div>
+    <div
+      class="absolute -top-12 -left-12 w-64 h-full opacity-5 z-0"
+      style="
+        background-image: url('data:image/svg+xml,%3Csvg width=\'15\' height=\'16\' viewBox=\'0 0 8 8\' fill=\'none\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Ccircle cx=\'4\' cy=\'4\' r=\'2\' fill=\'white\'/%3E%3C/svg%3E');
+        background-repeat: repeat;
+      "
+    ></div>
 
     <!-- Nuvens -->
     <div
@@ -36,10 +36,11 @@
     ></div>
 
     <!-- Card principal -->
-    <div class="relative bg-black/90 p-6 sm:p-10 md:p-16 rounded-xl w-full max-w-6xl text-center shadow-2xl z-10 backdrop-blur-md">
-
+    <div
+      class="relative bg-black/90 p-6 sm:p-10 md:p-16 rounded-xl w-full max-w-6xl text-center shadow-2xl z-10 backdrop-blur-md"
+    >
       <div class="flex items-center justify-center mb-10 space-x-4 flex-wrap">
-        <img src="imagens/image 1.png" alt="GitHub Logo" class="w-15 h-15" />
+        <img src="imagens/image 1.png" alt="GitHub Logo" class="w-16 h-16" />
         <h1 class="text-3xl sm:text-4xl md:text-5xl font-semibold">
           Perfil <span class="font-bold text-white">GitHub</span>
         </h1>
@@ -112,7 +113,6 @@
           <p id="profile-bio" class="text-gray-800 leading-relaxed break-words">
             Bio do usuário
           </p>
-          <!-- Link para o perfil -->
           <a
             id="profile-link"
             href="#"
