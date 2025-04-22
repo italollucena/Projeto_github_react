@@ -1,129 +1,76 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
-    />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <title>Perfil GitHub</title>
-    <link rel="stylesheet" href="style.css" />
-    <script src="https://cdn.tailwindcss.com"></script>
-  </head>
-  <body
-    class="min-h-screen flex items-center justify-center text-white relative px-4 overflow-x-hidden"
-    style="background: radial-gradient(circle at bottom left, #0f0f0f, #2d2d2d);"
-  >
-    <!-- Efeito de bolinhas -->
-    <div
-      class="absolute top-0 left-0 w-60 h-full opacity-5 z-0 pointer-events-none"
-      style="
-        background-image: url('data:image/svg+xml,%3Csvg width=\'15\' height=\'16\' viewBox=\'0 0 8 8\' fill=\'none\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Ccircle cx=\'4\' cy=\'4\' r=\'2\' fill=\'white\'/%3E%3C/svg%3E');
-        background-repeat: repeat;
-      "
-    ></div>
+const searchButton = document.getElementById("search-button");
+const searchInput = document.getElementById("search-input");
+const loading = document.getElementById("loading");
+const error = document.getElementById("error");
+const profileContainer = document.getElementById("profile-container");
+const profileImage = document.getElementById("profile-image");
+const profileName = document.getElementById("profile-name");
+const profileBio = document.getElementById("profile-bio");
+const profileLink = document.getElementById("profile-link");
 
-    <!-- Nuvens -->
-    <div
-      class="absolute w-72 h-72 sm:w-80 sm:h-80 md:w-96 md:h-96 bg-blue-600 opacity-70 rounded-full blur-[80px] z-0 pointer-events-none"
-      style="top: -6rem; right: -6rem;"
-    ></div>
-    <div
-      class="absolute w-64 h-64 sm:w-72 sm:h-72 md:w-80 md:h-80 bg-blue-600 opacity-70 rounded-full blur-[70px] z-0 pointer-events-none"
-      style="bottom: -5rem; left: -5rem;"
-    ></div>
+async function searchUser() {
+  const username = searchInput.value.trim();
 
-    <!-- Card principal -->
-    <div
-      class="relative bg-black/90 p-6 sm:p-10 md:p-16 rounded-xl w-full max-w-6xl text-center shadow-2xl z-10 backdrop-blur-md"
-    >
-      <div class="flex items-center justify-center mb-10 space-x-4 flex-wrap">
-        <img src="imagens/image 1.png" alt="GitHub Logo" class="w-16 h-16" />
-        <h1 class="text-3xl sm:text-4xl md:text-5xl font-semibold">
-          Perfil <span class="font-bold text-white">GitHub</span>
-        </h1>
-      </div>
+  if (!username) {
+    showError("Por favor, digite um nome de usuário.");
+    return;
+  }
 
-      <!-- Barra de pesquisa -->
-      <div class="flex justify-center mb-10">
-        <div class="relative w-full max-w-md">
-          <input
-            id="search-input"
-            type="text"
-            placeholder="Digite um usuário do Github"
-            class="w-full px-4 sm:px-6 py-4 pr-14 rounded-full text-black text-lg focus:outline-none"
-          />
-          <button
-            id="search-button"
-            class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-blue-600 p-3 rounded-full touch-manipulation select-none text-base"
-            onclick="searchUser()"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="w-5 h-5 text-white"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-            >
-              <circle cx="11" cy="11" r="8" />
-              <line x1="21" y1="21" x2="16.65" y2="16.65" />
-            </svg>
-          </button>
-        </div>
-      </div>
+  setLoading(true);
 
-      <!-- Erro -->
-      <div
-        id="loading"
-        class="hidden text-blue-300 mb-4 text-center max-w-2xl mx-auto"
-      >
-        <div
-          class="animate-spin border-t-4 border-blue-500 rounded-full w-12 h-12 mx-auto mb-3"
-        ></div>
-        Carregando...
-      </div>
-      <div
-        id="error"
-        class="hidden text-red-800 bg-gray-300 px-6 py-4 rounded-full mb-3 max-w-2xl mx-auto text-center"
-      >
-        Nenhum perfil foi encontrado com esse nome de usuário. Tente novamente.
-      </div>
+  try {
+    const response = await fetch(`https://api.github.com/users/${username}`);
 
-      <!-- Perfil -->
-      <div
-        id="profile-container"
-        class="hidden bg-gray-100 text-black p-6 rounded-2xl flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-6 max-w-2xl mx-auto text-center sm:text-left"
-      >
-        <img
-          id="profile-image"
-          src=""
-          alt="Foto do perfil"
-          class="w-20 sm:w-32 h-20 sm:h-32 rounded-full border-4 border-blue-500 object-cover"
-        />
-        <div>
-          <h2
-            id="profile-name"
-            class="text-xl font-bold text-blue-600 mb-2 break-words"
-          >
-            Nome do Usuário
-          </h2>
-          <p id="profile-bio" class="text-gray-800 leading-relaxed break-words">
-            Bio do usuário
-          </p>
-          <a
-            id="profile-link"
-            href="#"
-            target="_blank"
-            class="text-blue-600 underline mt-2 inline-block"
-          >
-            Ver perfil no GitHub
-          </a>
-        </div>
-      </div>
-    </div>
+    if (response.status === 404) {
+      throw new Error("Nenhum perfil foi encontrado com esse nome de usuário. Tente novamente.");
+    }
 
-    <script type="module" src="/main.js"></script>
-  </body>
-</html>
+    if (response.status === 403) {
+      throw new Error("Limite de requisições excedido. Tente novamente mais tarde.");
+    }
+
+    if (!response.ok) {
+      throw new Error("Erro ao buscar o perfil.");
+    }
+
+    const data = await response.json();
+
+    // Preenche os dados no card
+    profileImage.src = data.avatar_url;
+    profileName.textContent = data.name || "Usuário sem nome";
+    profileBio.textContent = data.bio || "Sem bio disponível";
+    profileLink.href = data.html_url;
+    profileLink.textContent = "Ver perfil no GitHub";
+
+    showProfile();
+  } catch (err) {
+    showError(err.message);
+  } finally {
+    setLoading(false);
+  }
+}
+
+function setLoading(isLoading) {
+  loading.classList.toggle("hidden", !isLoading);
+  searchButton.disabled = isLoading;
+}
+
+function showError(message) {
+  error.textContent = message;
+  error.classList.remove("hidden");
+  profileContainer.classList.add("hidden");
+  searchInput.focus();
+}
+
+function showProfile() {
+  error.classList.add("hidden");
+  profileContainer.classList.remove("hidden");
+}
+
+// Eventos
+searchButton.addEventListener("click", searchUser);
+searchInput.addEventListener("keypress", (e) => {
+  if (e.key === "Enter") {
+    searchUser();
+  }
+});
