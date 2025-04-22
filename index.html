@@ -14,14 +14,16 @@
       * {
         box-sizing: border-box;
       }
-      html,
-      body {
-        overflow-x: hidden;
+      @media (min-width: 1024px) {
+        html,
+        body {
+          overflow: hidden;
+        }
       }
     </style>
   </head>
   <body
-    class="min-h-screen flex items-center justify-center text-white relative px-4"
+    class="min-h-screen flex items-center justify-center text-white relative px-4 overflow-x-hidden"
     style="background: radial-gradient(circle at bottom left, #0f0f0f, #2d2d2d);"
   >
     <!-- Efeito de bolinhas -->
