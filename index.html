@@ -12,15 +12,12 @@
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
   <body
-    class="min-h-screen flex items-center justify-center text-white relative px-4"
-    style="
-      background: radial-gradient(circle at bottom left, #0f0f0f, #2d2d2d);
-      overflow: hidden;
-    "
+    class="min-h-screen flex items-center justify-center text-white relative px-4 overflow-x-hidden"
+    style="background: radial-gradient(circle at bottom left, #0f0f0f, #2d2d2d);"
   >
     <!-- Efeito de bolinhas -->
     <div
-      class="absolute -top-12 -left-12 w-64 h-full opacity-5 z-0"
+      class="absolute top-0 left-0 w-60 h-full opacity-5 z-0 pointer-events-none"
       style="
         background-image: url('data:image/svg+xml,%3Csvg width=\'15\' height=\'16\' viewBox=\'0 0 8 8\' fill=\'none\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Ccircle cx=\'4\' cy=\'4\' r=\'2\' fill=\'white\'/%3E%3C/svg%3E');
         background-repeat: repeat;
@@ -29,10 +26,12 @@
 
     <!-- Nuvens -->
     <div
-      class="absolute -top-24 -right-24 w-96 h-96 bg-blue-600 opacity-80 rounded-full blur-[90px] z-0"
+      class="absolute w-72 h-72 sm:w-80 sm:h-80 md:w-96 md:h-96 bg-blue-600 opacity-70 rounded-full blur-[80px] z-0 pointer-events-none"
+      style="top: -6rem; right: -6rem;"
     ></div>
     <div
-      class="absolute -bottom-28 -left-28 w-80 h-80 bg-blue-600 opacity-80 rounded-full blur-[80px] z-0"
+      class="absolute w-64 h-64 sm:w-72 sm:h-72 md:w-80 md:h-80 bg-blue-600 opacity-70 rounded-full blur-[70px] z-0 pointer-events-none"
+      style="bottom: -5rem; left: -5rem;"
     ></div>
 
     <!-- Card principal -->
@@ -53,7 +52,7 @@
             id="search-input"
             type="text"
             placeholder="Digite um usuário do Github"
-            class="w-full px-6 py-4 pr-14 rounded-full text-black text-lg focus:outline-none"
+            class="w-full px-4 sm:px-6 py-4 pr-14 rounded-full text-black text-lg focus:outline-none"
           />
           <button
             id="search-button"
